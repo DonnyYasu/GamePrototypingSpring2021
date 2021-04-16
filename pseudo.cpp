@@ -1,0 +1,1 @@
+#include <iostream>#include <windows.h>#include <time.h>#include <string>using namespace std;int rando(int _low, int _high){return rand() % ((_high - _low) + 1) + _low;}string name(){string letters[2] = {};string name = "";return name;}int main(void){srand(time(NULL));system("pause");return 0;}
