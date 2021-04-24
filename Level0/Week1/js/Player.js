@@ -1,7 +1,4 @@
-var c = document.getElementById("canvas");
-var ctx = c.getContext("2d");
-var ball = new Player()
-var timer = setInterval(animate, 1000/60)
+
 
 // JavaScript Document
 function Player()
@@ -12,7 +9,7 @@ function Player()
 	
 	//player's dimensions
 	this.width = 100;
-	this.height = 100;
+	this.height = 100;s
 	
 	//player's velocity or speed on each axis
 	this.vx = 0;
@@ -30,14 +27,14 @@ function Player()
 			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
 		context.restore();*/
 
-		ctx.save();
-		ctx.fillStyle = this.color;
-		ctx.translate(this.x, this.y);
-		ctx.beginPath();
-		ctx.arc(0,0,this.width/2,0,360*Math.PI/180,true);
-		ctx.closePath();
-		ctx.fill();
-		ctx.restore();
+		context.save();
+		context.fillStyle = this.color;
+		context.translate(this.x, this.y);
+		context.beginPath();
+		context.arc(0,0,this.width/2,0,360*Math.PI/180,true);
+		context.closePath();
+		context.fill();
+		context.restore();
 		
 	}	
 	
@@ -52,6 +49,6 @@ function Player()
 
 function animate()
 {
-	ctx.clearRect(0,0,canvas.width,canvas.height)
+	context.clearRect(0,0,canvas.width,canvas.height)
 	ball.draw()
 }
