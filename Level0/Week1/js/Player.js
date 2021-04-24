@@ -9,7 +9,7 @@ function Player()
 	
 	//player's dimensions
 	this.width = 100;
-	this.height = 100;s
+	this.height = 100;
 	
 	//player's velocity or speed on each axis
 	this.vx = 0;
