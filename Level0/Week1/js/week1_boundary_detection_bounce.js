@@ -31,6 +31,14 @@ function animate()
 	{
 		player.vx = -player.vx;	
 	}
+
+	else if(player.x < 0 + player.width/2)
+	{
+		player.vx = -player.vx;	
+	}
+
+
+	
 	//---------------------------------------------------
 	
 	player.draw();
