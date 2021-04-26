@@ -28,6 +28,7 @@ function animate()
 	
 	//Move the Player
 	ball.x += 2;
+	ball.y += 2;
 	
 	//Update the Screen
 	ball.move();
