@@ -40,7 +40,7 @@ function GameObject(x,y,w,h,color)
 		context.save();
 			context.fillStyle = this.color;
 			context.translate(this.x, this.y);
-			context.fillRect((-this.width/2-410), (-this.height/2), this.width-75, this.height);
+			context.fillRect((-this.width/2-470), (-this.height/2), this.width-75, this.height+20);
 		context.restore();
 		
 	}	
