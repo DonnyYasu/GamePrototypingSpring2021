@@ -16,7 +16,7 @@ var player;
 
 	player.width = 25
 	player.height = 125
-	player.x = player.width/2d
+	player.x = player.width/2
 
 
 	//Set the Animation Timer
