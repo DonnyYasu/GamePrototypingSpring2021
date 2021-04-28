@@ -40,12 +40,12 @@ function GameObject(x,y,w,h,color)
 		context.save();
 			context.fillStyle = this.color;
 			context.translate(this.x, this.y);
-			context.fillRect((-this.width/2-470), (-this.height/2), this.width-75, this.height+20);
+			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
 		context.restore();
 		
 	}	
 	
-	/*this.drawCircle = function()
+	this.drawCircle = function()
 	{
 		context.save();
 			context.fillStyle = this.color;
@@ -57,10 +57,10 @@ function GameObject(x,y,w,h,color)
 			context.fill();
 		context.restore();
 		
-	}	*/
+	}	
 	
 	//This changes the player's position
-	/*this.move = function()
+	this.move = function()
 	{
 		this.x += this.vx;
 		this.y += this.vy;
@@ -94,6 +94,6 @@ function GameObject(x,y,w,h,color)
 			return true
 		}
 		return false;
-	}*/
+	}
 	
 }
