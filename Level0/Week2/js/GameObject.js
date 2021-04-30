@@ -1,5 +1,5 @@
 // Paddle code starts here
-var player1 = new GameObject();
+
 function GameObject(x,y,w,h,color)
 {
 	
