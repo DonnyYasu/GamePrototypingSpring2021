@@ -1,4 +1,4 @@
-// JavaScript Document
+// Paddle code starts here
 var player1 = new GameObject();
 function GameObject(x,y,w,h,color)
 {
@@ -57,7 +57,9 @@ function GameObject(x,y,w,h,color)
 			context.fill();
 		context.restore();
 		
-	}	
+	}
+
+	
 	
 	//This changes the player's position
 	this.move = function()
