@@ -18,6 +18,9 @@ var prevX;
 	//Instantiate the Player
 	player = new GameObject();
 	player.x = 100;
+	player.width = 25
+	player.height = 125
+	player.x = player.width/2
 
 	ball = new GameObject();
 	ball.x = canvas.width/2
@@ -120,6 +123,23 @@ function animate()
 		ball.vy = -ball.vy;		
 	}
 
+	if(s)
+	{
+		console.log("Moving Down");
+		if(player.y < canvas.height - player.height/2)
+		player.y += 3;
+	
+	}
+	if(w)
+	{
+		console.log("Moving Up");
+		if(player.y >  player.height/2)
+		player.y += -3;
+	}
+	if(canvas.height <= 0)
+	{
+		player.y += 0;
+	}
 	
 
 	
