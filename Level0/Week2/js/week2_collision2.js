@@ -6,7 +6,6 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player;
-var player2;
 var ball;
 
 //This is used to stop the player from moving through obstacles.
@@ -23,12 +22,6 @@ var prevX;
 	player.width = 25
 	player.height = 125
 	player.x = player.width/2
-	
-	player2 = new GameObject2();
-	player2.x = 100;
-	player2.width = 25
-	player2.height = 125
-	player2.x = player2.width/2+999;
 
 	
 	
@@ -54,16 +47,13 @@ function animate()
 	
 	//----Movement Using the Player's move() function----
 	player.move();
-	player2.move();
 	//---------------------------------------------------
 	
 	//--------------Bounce of Right----------------------
 	if(ball.x > canvas.width - ball.width/2)
 	{
 		
-		//	ball.vx = -ball.vx;	
-		ball.x = canvas.width/2	
-		ball.y = canvas.height/2
+		ball.vx = -ball.vx;	
 		
 	}
 
@@ -85,14 +75,14 @@ function animate()
 		ball.vy = -ball.vy;		
 	}
 
-	if(s)
+	if(l)
 	{
 		console.log("Moving Down");
 		if(player.y < canvas.height - player.height/2)
 		player.y += 3;
 	
 	}
-	if(w)
+	if(o)
 	{
 		console.log("Moving Up");
 		if(player.y >  player.height/2)
@@ -103,32 +93,9 @@ function animate()
 		player.y += 0;
 	}
 
-
-	if(s)
-	{
-		console.log("Moving Down");
-		if(player2.y < canvas.height - player2.height/2)
-		player2.y += 3;
-	
-	}
-	if(w)
-	{
-		console.log("Moving Up");
-		if(player2.y >  player2.height/2)
-		player2.y += -3;
-	}
-	if(canvas.height <= 0)
-	{
-		player2.y += 0;
-	}
-
 	
 
 	if(player.hitTestObject(ball)){
-		ball.vx *= -1
-	}
-	
-	if(player2.hitTestObject(ball)){
 		ball.vx *= -1
 	}
 
@@ -137,7 +104,6 @@ function animate()
 	//Update the Screen
 	ball.drawCircle();
 	player.drawRect();
-	player2.drawRect();
 
 
 }

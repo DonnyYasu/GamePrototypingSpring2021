@@ -1,8 +1,7 @@
 //Define Booleans for each key
-var w = false;
-var s = false;
-var i = false;
-var k = false;
+var o = false;
+var l = false;
+
 //Add Event Listeners
 document.addEventListener("keydown", press);
 document.addEventListener("keyup", release);
@@ -13,21 +12,13 @@ function press(e)
 	//---This logs key codes into the browser's console.
 	//console.log("Pressed" + e.keyCode);
 	
-	if(e.keyCode == 87)
+	if(e.keyCode == 111)
 	{
-		w = true;
+		o = true;
 	}
-	if(e.keyCode == 83)
+	if(e.keyCode == 108)
 	{
-		s = true;
-	}
-	if(e.keyCode == 105)
-	{
-		i = true;
-	}
-	if(e.keyCode == 107)
-	{
-		k = true;
+		l = true;
 	}
 }
 
@@ -36,21 +27,13 @@ function release(e)
 	//---This logs key codes into the browser's console.
 	//console.log("Released" + e.keyCode);
 	
-	if(e.keyCode == 87)
+	if(e.keyCode == 111)
 	{
-		w = false;
+		o = false;
 	}
-	if(e.keyCode == 83)
+	if(e.keyCode == 108)
 	{
-		s = false;
-	}
-	if(e.keyCode == 105)
-	{
-		i = false;
-	}
-	if(e.keyCode == 107)
-	{
-		sk = false;
+		l = false;
 	}
 }
 
