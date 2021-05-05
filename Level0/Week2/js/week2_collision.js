@@ -58,11 +58,23 @@ function animate()
 	player.move();
 	player2.move();
 	//---------------------------------------------------
+	context.save();
+	context.strokeStyle = 'blue';
+	context.beginPath();
+	context.moveTo(512, 0);
+	context.lineTo(512, 800);
+	context.closePath();
+	context.lineWidth = 15; 
+	context.stroke();
+	context.restore();
+
 	context.font = '50px Impact';
 	context.fillText('Player 1  /  Player2', 310, 60, );
 
 	context.font = '30px Impact';
 	context.fillText(p1Wins + '-'+ p2Wins, 470, 100, );
+
+
 	
 	//--------------Bounce of Right----------------------
 	if(ball.x > canvas.width - ball.width/2)
