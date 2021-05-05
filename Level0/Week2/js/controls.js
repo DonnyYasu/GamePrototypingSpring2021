@@ -14,7 +14,7 @@ document.addEventListener("keyup", release);
 function press(e)
 {
 	//---This logs key codes into the browser's console.
-	//console.log("Pressed" + e.keyCode);
+	console.log("Pressed" + e.keyCode);
 	
 	if(e.keyCode == 87)
 	{
@@ -24,11 +24,11 @@ function press(e)
 	{
 		s = true;
 	}
-	if(e.keyCode == 105)
+	if(e.keyCode == 73)
 	{
 		i = true;
 	}
-	if(e.keyCode == 107)
+	if(e.keyCode == 75)
 	{
 		k = true;
 	}
@@ -37,7 +37,7 @@ function press(e)
 function release(e)
 {
 	//---This logs key codes into the browser's console.
-	//console.log("Released" + e.keyCode);
+	console.log("Released" + e.keyCode);
 	
 	if(e.keyCode == 87)
 	{
@@ -47,12 +47,12 @@ function release(e)
 	{
 		s = false;
 	}
-	if(e.keyCode == 105)
+	if(e.keyCode == 73)
 	{
 		i = false;
 	}
-	if(e.keyCode == 107)
+	if(e.keyCode == 75)
 	{
-		sk = false;
+		k = false;
 	}
 }

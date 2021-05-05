@@ -162,7 +162,7 @@ function animate()
 	ball.drawCircle();
 	player.drawRect();
 	player2.drawRect();
-	context.drawImage(img, ball.x-80, ball.y-70, 155, 155);
+	
 
 
 }

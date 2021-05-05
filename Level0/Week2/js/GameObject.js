@@ -112,7 +112,7 @@ function GameObject(x,y,w,h,color)
 }
 
 //Paddle2==================================================================================================================================
-function GameObject2(x,y,w,h,color)
+/*function GameObject2(x,y,w,h,color)
 {
 	
 	//Default Values
@@ -173,7 +173,7 @@ function GameObject2(x,y,w,h,color)
 			context.fill();
 		context.restore();
 		
-	}*/
+	}
 
 	
 	
@@ -214,4 +214,4 @@ function GameObject2(x,y,w,h,color)
 		return false;
 	}
 	
-}
+}*/
