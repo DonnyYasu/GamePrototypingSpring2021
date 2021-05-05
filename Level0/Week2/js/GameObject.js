@@ -1,5 +1,9 @@
+var p1Wins = 0;
+var p2Wins = 0;
 // Paddle code starts here
 var player2;
+var p1Wins = 0;
+var p2Wins = 0;
 
 function GameObject(x,y,w,h,color)
 {

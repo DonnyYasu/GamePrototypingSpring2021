@@ -7,6 +7,8 @@ var timer;
 var interval = 1000/60;
 var player;
 var player2;
+var p1Wins = 0;
+var p2Wins = 0;
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");

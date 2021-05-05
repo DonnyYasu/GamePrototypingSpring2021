@@ -1,3 +1,5 @@
+var p1Wins = 0;
+var p2Wins = 0;
 //Define Booleans for each key
 var w = false;
 var s = false;
@@ -53,4 +55,3 @@ function release(e)
 		sk = false;
 	}
 }
-

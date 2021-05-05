@@ -8,6 +8,8 @@ var interval = 1000/60;
 var player;
 var player2;
 var ball;
+var p1Wins = 0;
+var p2Wins = 0;
 
 //This is used to stop the player from moving through obstacles.
 var prevX;
@@ -56,11 +58,17 @@ function animate()
 	player.move();
 	player2.move();
 	//---------------------------------------------------
+	context.font = '50px Impact';
+	context.fillText('Player 1  /  Player2', 310, 60, );
+
+	context.font = '30px Impact';
+	context.fillText(p1Wins + '-'+ p2Wins, 470, 100, );
 	
 	//--------------Bounce of Right----------------------
 	if(ball.x > canvas.width - ball.width/2)
 	{
-		
+		console.log("Player 1 Scores");	
+		p1Wins++;
 		//	ball.vx = -ball.vx;	
 		ball.x = canvas.width/2	
 		ball.y = canvas.height/2
@@ -69,10 +77,12 @@ function animate()
 
 	else if(ball.x < -ball.width)
 	{
-		
+		console.log("Player 2 Scores");	
+		p2Wins++;
 	//	ball.vx = -ball.vx;	
 		ball.x = canvas.width/2		
-		ball.y = canvas.height/2		
+		ball.y = canvas.height/2	
+		
 	}
 
 	if(ball.y > canvas.height - ball.height/2)
