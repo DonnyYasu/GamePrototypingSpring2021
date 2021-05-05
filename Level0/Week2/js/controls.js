@@ -5,6 +5,7 @@ var w = false;
 var s = false;
 var i = false;
 var k = false;
+var img=document.getElementById("ric");
 //Add Event Listeners
 document.addEventListener("keydown", press);
 document.addEventListener("keyup", release);

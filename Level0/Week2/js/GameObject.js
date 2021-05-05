@@ -4,6 +4,8 @@ var p2Wins = 0;
 var player2;
 var p1Wins = 0;
 var p2Wins = 0;
+var ball;
+var img=document.getElementById("ric");
 
 function GameObject(x,y,w,h,color)
 {
@@ -57,7 +59,7 @@ function GameObject(x,y,w,h,color)
 	this.drawCircle = function()
 	{
 		context.save();
-			context.fillStyle = this.color;
+			context.fillStyle = 'purple';
 			context.beginPath();
 			context.translate(this.x, this.y);
 			context.arc(0, 0, this.width/2, 0, 360 *Math.PI/180, true);
@@ -134,7 +136,7 @@ function GameObject2(x,y,w,h,color)
 	
 		//player's color
 	if(color == undefined)
-		this.color = "#ff0099";
+		this.color = "blue";
 	else 
 		this.color = color;
 	

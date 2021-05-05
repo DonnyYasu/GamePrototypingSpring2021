@@ -9,6 +9,7 @@ var player;
 var player2;
 var p1Wins = 0;
 var p2Wins = 0;
+var img=document.getElementById("ric");
 
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
@@ -33,8 +34,10 @@ var p2Wins = 0;
 
 function animate()
 {
+	
 	//Erase the Screen
 	context.clearRect(0,0,canvas.width, canvas.height);	
+	
 	
 	
 	//Move the Player up and down
@@ -76,6 +79,7 @@ function animate()
 	
 	
 	//Update the Screen
+	
 	player.drawRect();
 	player2.drawRect();
 }

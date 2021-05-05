@@ -10,6 +10,7 @@ var player2;
 var ball;
 var p1Wins = 0;
 var p2Wins = 0;
+var img=document.getElementById("ric");
 
 //This is used to stop the player from moving through obstacles.
 var prevX;
@@ -58,8 +59,9 @@ function animate()
 	player.move();
 	player2.move();
 	//---------------------------------------------------
+	//Net
 	context.save();
-	context.strokeStyle = 'blue';
+	context.strokeStyle = 'green';
 	context.beginPath();
 	context.moveTo(512, 0);
 	context.lineTo(512, 800);
@@ -160,6 +162,7 @@ function animate()
 	ball.drawCircle();
 	player.drawRect();
 	player2.drawRect();
+	context.drawImage(img, ball.x-80, ball.y-70, 155, 155);
 
 
 }
