@@ -1,11 +1,9 @@
-var p1Wins = 0;
-var p2Wins = 0;
 // Paddle code starts here
 var player2;
-var p1Wins = 0;
-var p2Wins = 0;
 var ball;
-var img=document.getElementById("ric");
+var gravity = 1;
+
+
 
 function GameObject(x,y,w,h,color)
 {
@@ -16,9 +14,9 @@ function GameObject(x,y,w,h,color)
 	else 
 		this.x = x;
 	if(y == undefined)
-		this.y = canvas.height/2;
+		this.y = gravity;
 	else 
-		this.y = y;
+		this.y = gravity;
 	
 	if(w == undefined)
 		this.width = 100;
@@ -38,6 +36,9 @@ function GameObject(x,y,w,h,color)
 	//player's velocity or speed on each axis
 	this.vx = 0;
 	this.vy = 0;
+	this.gravity = 1;
+	
+	
 	
 
 	
@@ -59,7 +60,7 @@ function GameObject(x,y,w,h,color)
 	this.drawCircle = function()
 	{
 		context.save();
-			context.fillStyle = 'purple';
+			context.fillStyle = 'magenta';
 			context.beginPath();
 			context.translate(this.x, this.y);
 			context.arc(0, 0, this.width/2, 0, 360 *Math.PI/180, true);
@@ -67,6 +68,7 @@ function GameObject(x,y,w,h,color)
 			context.closePath();
 			context.fill();
 		context.restore();
+		
 		
 	}
 
@@ -99,6 +101,8 @@ function GameObject(x,y,w,h,color)
 	
 	this.hitTestObject = function(obj)
 	{
+
+		
 		if(this.left() < obj.right() && 
 		   this.right() > obj.left() &&
 		   this.top() < obj.bottom() &&
@@ -108,5 +112,9 @@ function GameObject(x,y,w,h,color)
 		}
 		return false;
 	}
+
 	
 }
+
+//player2.width/6
+//player2.width/3
