@@ -34,9 +34,9 @@ var player;
 	platform3 = new GameObject();
 		platform3.width = canvas.width-900;
 		platform3.x = platform0.width/2 + 300;
-		platform3.color = "blue";
+		platform3.color = "#66ff33";
 		platform3.y = platform0.y- 100;
-		platform3.color = "blue";
+		platform3.color = "#66ff33";
 
 		
 	
