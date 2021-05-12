@@ -10,12 +10,12 @@ var player;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
-	player = new GameObject({x:150});
+	player = new GameObject({x:150,y:200});
 
 	platform0 = new GameObject();
 		platform0.width = 150;
 		platform0.x = platform0.width/2;
-		platform0.y = player.y +player.height/2 + platform0.height/2;
+		platform0.y = canvas.width/2 +player.height/2 + platform0.height/2;
 		platform0.color = "#66ff33";
 		
 	
@@ -26,7 +26,7 @@ var player;
 		platform1.color = "#66ff33";
 		
 	
-	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y-250, color:"#00ffff"});
+	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y+100, color:"#00ffff"});
 	
 
 	var fX = .85;
@@ -42,9 +42,9 @@ function animate()
 	
 	context.clearRect(0,0,canvas.width, canvas.height);	
 
-	if(w && player.canJump && player.vy >=0)
+	if(w && player.canJump && player.vy ==0)
 	{
-		player.canJump = true;
+		player.canJump = false;
 		player.vy += player.jumpHeight;
 	}
 
@@ -55,6 +55,11 @@ function animate()
 	if(d)
 	{
 		player.vx += player.ax * player.force;
+	}
+	if(s && platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.vy = gravity;
+		
 	}
 
 	player.vx *= fX;
@@ -69,7 +74,7 @@ function animate()
 	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
 		player.y--;
-		player.vy = 1;
+		player.vy = 0;
 		player.canJump = true;
 	}
 	while(platform0.hitTestPoint(player.left()) && player.vx <=0)
@@ -86,29 +91,30 @@ function animate()
 	{
 		player.y++;
 		player.vy = 0;
-		
 	}
 	
 	
 	
 	//---------Objective: Get the blue pearl----------------------------------------------------------------------------------------------------
-	//---------Jump through and land on the block without changin the physics
+	//---------Add to the following condition so that when you hold "s" you climb down through the platform. 
 	
 	
 
-
-	
-	while(platform1.hitTestPoint(player.top()) && player.vy <=0)
+	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0 )
 	{
+		
+		
+		if (s)
+		{
+			console.log("Pressing Down");
+			player.vy = gravity;
+			player.y++;
+		}else
+		{
+			player.canJump = true;
 		player.y--;
-		player.vy = 1;
-	
-	}
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 1;
-		player.canJump = true;
+		player.vy = 0;
+		}
 	}
 	
 	
