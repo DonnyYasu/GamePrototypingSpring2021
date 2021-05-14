@@ -5,12 +5,13 @@ var context;
 var timer;
 var interval;
 var player;
+var key = false;
 
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
-	player = new GameObject({x:300, y:canvas.height/2-100});
+	player = new GameObject({x:100, y:canvas.height/2-100});
 
 	platform0 = new GameObject();
 		platform0.width = canvas.width-300;
@@ -32,13 +33,14 @@ var player;
 
 		
 	
-	goal = new GameObject({width:24, height:50, x:700, y:platform0.y-100, color:"#00ffff"});
+	goal = new GameObject({width:24, height:50, x:20, y:platform0.y-100, color:"#00ffff"});
 	
 
 	var fX = .85;
 	var fY = .97;
 	
 	var gravity = 1;
+	
 
 	interval = 1000/60;
 	timer = setInterval(animate, interval);
@@ -133,34 +135,32 @@ function animate()
 	}
 	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
 	{
-		//player.x--;
-		//player.vx = 0;
-		platform1.x = 10000;
-	}
-	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
-	{
+		if(key){
+			platform1.x = 10000;
+			key = false
+		}
 		player.x--;
 		player.vx = 0;
+
 	}
+
 	
 	//---------Objective: Let Me Out!---------------------------------------------------------------------------------------------------- 
 	//---------Run this program first.
-	//---------Write a condition so that the player opens the yellow door to get the pearl-----------------------------------------
-
+	//---------Get the pearl to open the door--------------------------------------------------------------------------------------------
+	//---------Hint: you'll need a new variable to keep track of the key-----------------------------------------------------------------
 	
-	if(platform1.hitTestObject(player))
-	{
-		//player.x++;
-		
-	}
-
 	if(player.hitTestObject(goal))
 	{
+		key = true; 
 		goal.y = 10000;
-		
+
+
+	
 	}
 	
-
+	
+	
 
 
 	
