@@ -49,8 +49,6 @@ function animate()
 		if ( jumps >= 10)
 		{
 		gameOver = true;
-			context.font = '50px Impact';
-			
 			gravity = 100;
 			fX = 0;
 		}
