@@ -40,10 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	function countDown(){
 		setInterval(function()
 		{
+			
+			
 			if(timeLeft <= 0 )
 			{
+				context.font = '50px Impact';
+				context.fillText('GAME OVER', 310, 60, );
+				fX = 0;
+				gravity = 100;
 				clearInterval(timeLeft = 0)
+				
 			}
+
+
 			timeLeftDisplay.innerHTML = timeLeft
 			timeLeft -=1
 		}, 1000) 	
@@ -59,12 +68,14 @@ function animate()
 	
 	context.clearRect(0,0,canvas.width, canvas.height);	
 
-		context.font = '50px Impact';
-		context.fillText('Timer', 310, 60, );
+		//context.font = '50px Impact';
+		//context.fillText('Timer', 310, 60, );
 	
-		context.font = '30px Impact';
+		//context.font = '30px Impact';
 		//context.fillText, 470, 100, );
-
+		
+		
+		
 	
 
 	if(w && player.canJump && player.vy ==0)
