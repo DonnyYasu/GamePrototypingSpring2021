@@ -28,29 +28,20 @@ var gameOver = false;
 	var fY = .97;
 	
 	var gravity = 1;
-
+	let timeLeft = 10;
 	interval = 1000/60;
 	timer = setInterval(animate, interval);
 //----Begin 
 document.addEventListener('DOMContentLoaded', () => {
 	const timeLeftDisplay = document.querySelector('#time-left')
 	const startBtn = document.querySelector('#start-button')
-	let timeLeft = 10;
+	
 
 	function countDown(){
 		setInterval(function()
 		{
 			
 			
-			if(timeLeft <= 0 )
-			{
-				context.font = '50px Impact';
-				context.fillText('GAME OVER', 310, 60, );
-				fX = 0;
-				gravity = 100;
-				clearInterval(timeLeft = 0)
-				
-			}
 
 
 			timeLeftDisplay.innerHTML = timeLeft
@@ -124,7 +115,14 @@ function animate()
 		player.vy = 0;
 	}
 	
-	
+	if(timeLeft <= 0 )
+			{
+				context.font = '50px Impact';
+				context.fillText('GAME OVER', 310, 60, );
+				clearInterval(timeLeft = 0)
+				fX = 0;
+				gravity = 100;
+			}
 		
 	/*if(player.hitTestObject(goal))
 	{
