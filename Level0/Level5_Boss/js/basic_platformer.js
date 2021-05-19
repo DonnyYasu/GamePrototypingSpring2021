@@ -10,6 +10,7 @@ var time = seconds / ticks;
 var ticks = 1000/60;
 var gameOver = false;
 
+
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
