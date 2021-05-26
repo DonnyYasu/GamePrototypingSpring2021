@@ -176,3 +176,4 @@ function animate()
 	//powerup2.drawCircle();
 }
 
+//level7boss
