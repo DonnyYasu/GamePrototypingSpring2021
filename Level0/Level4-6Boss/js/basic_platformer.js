@@ -86,6 +86,7 @@ function animate() {
 		if (player.hitTestObject(objTwo[j])) {
 			//death
 			score = 0;
+			objTwo[j].y = -901;
 			player.color = "red";
 			setTimeout(location.reload(),500);
 		}
