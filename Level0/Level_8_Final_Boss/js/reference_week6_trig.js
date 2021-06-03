@@ -88,8 +88,6 @@ states["loading"] = function()
 		context.fillStyle = "white";
 		context.fillText("Loading", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
-
-	setTimeout(changeStates, 2000, "start")
 }
 
 states["start"] = function()
