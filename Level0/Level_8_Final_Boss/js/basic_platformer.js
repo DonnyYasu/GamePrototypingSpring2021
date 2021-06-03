@@ -162,8 +162,14 @@ var gameOver = false;
 //Play State
 	states["play"] = function()
 {
+
+	setTimeout(changeStates, 47500, "lose")
+
 	context.font = '50px Impact';
 	context.fillText('Timer', 70, 60, );
+
+	context.font = '30px Impact';
+	context.fillText(setTimeout(1), 70, 100, );
 
 	context.font = '50px Impact';
 	context.fillText('Jumps', 800, 60, );
@@ -192,6 +198,7 @@ var gameOver = false;
 			if (jumpPoint >=2 && pupform)
 			{
 				player.vy = gravity+5;
+				jumpPoints++
 			}
 			if ( jumpPoints >= 10)
 		{
