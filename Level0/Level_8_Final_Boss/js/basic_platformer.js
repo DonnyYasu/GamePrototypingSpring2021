@@ -18,15 +18,45 @@ var gameOver = false;
 	context = canvas.getContext("2d");	
 //Player
 	player = new GameObject({x:100, y:canvas.height/2-100});
+
 //Bottom Platform
 	platform0 = new GameObject();
-		platform0.width = 1000;
-		platform0.x = platform0.width/2;
-		platform0.y = canvas.height - platform0.height/2;
-		platform0.color = "#66ff33";
+	platform0.width = 1000;
+	platform0.x = platform0.width/2;
+	platform0.y = canvas.height - platform0.height/2;
+	platform0.color = "#66ff33";
+//Platform2
+	platform2 = new GameObject();
+	platform2.width = 400;
+	platform2.height = 50;
+	platform2.x = 0;
+	platform2.y = 550;
+	platform2.color = "#4ca832";
+//Platform3
+	platform3 = new GameObject();
+	platform3.width = 200;
+	platform3.height = 50;
+	platform3.x = 600;
+	platform3.y = 450;
+	platform3.color = "#4ca832";
+//Platform4
+	platform4 = new GameObject();
+	platform4.width = 100;
+	platform4.height = 50;
+	platform4.x = 750;
+	platform4.y = 250;
+	platform4.color = "#4ca832";
+//Ice Platform
+	platform1 = new GameObject();
+	platform1.width = 400;
+	platform1.height = 50;
+	platform1.x = 500;
+	platform1.y = 100;
+	platform1.color = "#81d8f0";
 //PowerUps		
 	powerup = new GameObject({width:24, height:50, x:canvas.width-50, y:650, color:"#00ffff"});
 	powerup2 = new GameObject({width:24, height:50, x:canvas.width-150, y:250, color:"#00ffff"});
+	powerup3 = new GameObject({width:24, height:50, x:canvas.width-790, y:250, color:"#00ffff"});
 	
 
 	var fX = .85;
@@ -188,7 +218,32 @@ var gameOver = false;
 	
 	player.x += Math.round(player.vx);
 	player.y += Math.round(player.vy);
-	
+
+	//Ice platform
+	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		jumpPoint = 0;
+		player.vx *= fX+ 0.25;
+		player.canJump = true;
+	}
+	while(platform1.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform1.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	//===========================================================================================
 	console.log(player.x, player.y)
 	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
@@ -212,8 +267,79 @@ var gameOver = false;
 		player.y++;
 		player.vy = 0;
 	}
-	
-	
+	//===========================================================================================
+	console.log(player.x, player.y)
+	while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		jumpPoint = 0;
+		player.canJump = true;
+	}
+	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform2.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	//===========================================================================================
+	console.log(player.x, player.y)
+	while(platform3.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		jumpPoint = 0;
+		player.canJump = true;
+	}
+	while(platform3.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform3.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform3.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	//===========================================================================================
+	console.log(player.x, player.y)
+	while(platform4.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		jumpPoint = 0;
+		player.canJump = true;
+	}
+	while(platform4.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform4.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform4.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
+	//===========================================================================================
 
 		
 	if(player.hitTestObject(powerup))
@@ -222,10 +348,17 @@ var gameOver = false;
 		powerup.y = 10000;
 		
 	}
-	if(player.hitTestObject(powerup2))
+	if(player.hitTestObject(powerup), player.hitTestObject(powerup2))
 	{
 		gameOver = true;
 		powerup2.y = 10000;
+		
+			
+	}
+	if(player.hitTestObject(powerup), player.hitTestObject(powerup3))
+	{
+		gameOver = true;
+		powerup3.y = 10000;
 		
 			
 	}
@@ -254,11 +387,16 @@ var gameOver = false;
 	
 	
 	platform0.drawRect();
+	platform1.drawRect();
+	platform2.drawRect();
+	platform3.drawRect();
+	platform4.drawRect();
 
 	//Show hit points
 	player.drawRect();
 	powerup.drawCircle();
 	powerup2.drawCircle();
+	powerup3.drawCircle();
 }
 
 //Game Over Message
