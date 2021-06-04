@@ -9,6 +9,7 @@ var pupform = false;
 var jumpPoint = 0;
 var jumpPoints = 0;
 var gameOver = false;
+var goal
 
 
 	canvas = document.getElementById("canvas");
@@ -56,7 +57,9 @@ var gameOver = false;
 //PowerUps		
 	powerup = new GameObject({width:24, height:50, x:canvas.width-50, y:650, color:"#00ffff"});
 	powerup2 = new GameObject({width:24, height:50, x:canvas.width-150, y:250, color:"#00ffff"});
-	powerup3 = new GameObject({width:24, height:50, x:canvas.width-790, y:250, color:"#00ffff"});
+	powerup3 = new GameObject({width:24, height:50, x:canvas.width-950, y:150, color:"#00ffff"});
+//Goal	
+	goal = new GameObject({width:60, height:60, x:canvas.width-995, y:30, color:"#fcf679"});
 	
 
 	var fX = .85;
@@ -89,6 +92,34 @@ var gameOver = false;
 			changeStates("play");
 		}
 	}
+//Start Instructions... why no click?	
+	function startInstructions()
+	{
+		
+		var dx = powerup.x - mouse.x;
+		var dy = (powerup.y - powerup.width/2) - mouse.y;
+		var dist = Math.sqrt(dx*dx + dy * dy);
+		if(dist < powerup.radius())
+		{
+			
+			changeStates("instructions");
+		}
+	}
+//Start Menu from instructions... why no click?
+	function startMenu()
+	{
+		
+		var dx = goal.x - mouse.x;
+		var dy = (goal.y - goal.width/2) - mouse.y;
+		var dist = Math.sqrt(dx*dx + dy * dy);
+		if(dist < goal.radius())
+		{
+			//powerup.vx = 0
+			//powerup.vy = 0
+			//powerup.y = 600
+			changeStates("start");
+		}
+	}
 	
 	function track(e)
 	{
@@ -105,18 +136,6 @@ var gameOver = false;
 	
 
 
-	function setParticles()
-	{
-		for(var i = 0; i < 50; i++)
-		{
-			particles[i] = new GameObject({x:0, y:0, width:30, height:30, color:"#ff0000"});
-			particles[i].vx = rand(-25, 25);
-			particles[i].vy = rand(-25, 25);
-			particles[i].x = player.x;
-			particles[i].y = player.y;
-		}
-		
-	}
 	
 //Loading State
 
@@ -135,8 +154,36 @@ var gameOver = false;
 
 		setTimeout(changeStates, 2000, "start")
 	}
+//Instructions
+	states["instructions"] = function()
+	{
+		
+		context.save();
+			context.fillStyle = "black";
+			context.font = "bold 58px Impact"
+			context.textAlign = "center";
+			context.fillRect(0, canvas.height/2-300,canvas.width, 600);
+			context.fillStyle = "white";
+			context.fillText("HOW TO PLAY", canvas.width/2, canvas.height/4)
+			context.font = "bold 30px Arial"
+			context.fillText("- Use 'W' to jump. Use 'A' and 'D' to move. ", canvas.width/2, canvas.height/2-150)
+			context.fillText("- As the player, your objective is to reach the yellow circle goal.", canvas.width/2, canvas.height/2-110)
+			context.fillText("- If reach a blue circle Power-Up, you gain the ability to double jump", canvas.width/2, canvas.height/2-70)
+			context.fillText("- If you reach a second Power-Up however, game over.", canvas.width/2, canvas.height/2-30)
+			context.fillText("- If you jump ten times, game over.", canvas.width/2, canvas.height/2+10)
+			context.fillText("- If the timer reaches 60 seconds, game over.", canvas.width/2, canvas.height/2+40)
+			context.fillText("Return to the Main Menu by clicking the yellow Goal.", canvas.width/2, canvas.height/2+200)
+		context.restore();
+		
+	
+		goal.drawCircle();
+		startMenu();
 
-//Start State
+
+		
+	}
+
+//Start Menu State
 	states["start"] = function()
 	{
 		
@@ -153,7 +200,8 @@ var gameOver = false;
 		player.x = 150
 		player.y = 700
 		player.drawRect();
-		powerup.drawCircle(powerup.x = 700, player.y = 750)
+		powerup.drawCircle();
+		startInstructions();
 
 
 		
@@ -182,8 +230,6 @@ var gameOver = false;
 		player.canJump = false;
 		player.vy += player.jumpHeight;
 		jumpPoints++
-		
-	
 	}
 
 	if (w && pupform && player.vy >= 0)
@@ -192,7 +238,7 @@ var gameOver = false;
 				player.canJump = true;
 				player.vy += player.jumpHeight;
 				jumpPoint++
-				jumpPoints++
+				
 			}
 	
 			if (jumpPoint >=2 && pupform)
@@ -389,6 +435,18 @@ var gameOver = false;
 		{
 			player.color = "blue";
 		}
+
+//Goal
+	if(player.hitTestObject(goal))
+	{
+		
+		goal.y = 10000;
+		player.vx = 0;
+		player.vy = 0;
+		gravity = 0;
+		setTimeout(changeStates, 1000, "message")
+		
+	}
 	
 
 	
@@ -404,6 +462,7 @@ var gameOver = false;
 	powerup.drawCircle();
 	powerup2.drawCircle();
 	powerup3.drawCircle();
+	goal.drawCircle();
 }
 
 //Game Over Message
@@ -413,10 +472,10 @@ states["lose"] = function()
 	
 	context.save();
 		context.fillStyle = "black";
-		context.font = "bold 58px Arial"
+		context.font = "bold 58px Impact"
 		context.textAlign = "center";
 		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
-		context.fillStyle = "white";
+		context.fillStyle = "red";
 		context.fillText("You Lose.", canvas.width/2, canvas.height/2-78/4)
 		context.fillText("Refresh to try again.", canvas.width/2, canvas.height/2+(64))
 	context.restore();
@@ -424,55 +483,27 @@ states["lose"] = function()
 	
 }
 
-//Victory State
-states["win"] = function()
-{
-	for(var i = 0; i < level.grid.length; i++)
-	{
-		level.grid[i].drawRect();
-	}
-	
-	player.x = startX;
-	player.y = startY;
-	
-	context.drawImage(image,0,0, canvas.width, canvas.height);
-	
-	setTimeout(changeStates, 2000, "message")
-}
+
 
 //Victory Message State
 states["message"] = function()
 {
-	player.x = startX;
-	player.y = startY;
-
-	for(var i = 0; i < level.grid.length; i++)
-	{
-		level.grid[i].drawRect();
-	}
 	
-	dot.drawCircle();
-		
-	goal.drawCircle();
-	player.drawTriangle();	
 	
 	context.save();
 		context.fillStyle = "black";
-		context.font = "bold 78px Arial"
+		context.font = "bold 78px Impact"
 		context.textAlign = "center";
 		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
-		context.fillStyle = "white";
-		context.fillText("Congratulations", canvas.width/2, canvas.height/2+(78/4))
+		context.fillStyle = "blue";
+		context.fillText("Congratulations!!!", canvas.width/2, canvas.height/2+(78/4))
 	context.restore();
 	
-	setTimeout(changeStates, 2000, "start")
+	
 }
 
 
 	
-
-
-
 
 //Animate Function
 function animate()
@@ -486,116 +517,6 @@ function animate()
 
 	
 
-//Placeholder Game State
 
-	/*
-	context.clearRect(0,0,canvas.width, canvas.height);	
-	
-
-	if(w && player.canJump && player.vy ==0)
-	{
-		player.canJump = false;
-		player.vy += player.jumpHeight;
-		
-	
-	}
-
-	if (w && pupform && player.vy >= 0)
-			{
-				
-				player.canJump = true;
-				player.vy += player.jumpHeight;
-				jumpPoint++
-			}
-	
-			if (jumpPoint >=2 && pupform)
-			{
-				player.vy = gravity+5;
-			}
-			
-			
-
-	if(a)
-	{
-		player.vx += -player.ax * player.force;
-	}
-	if(d)
-	{
-		player.vx += player.ax * player.force;
-	}
-
-	player.vx *= fX;
-	player.vy *= fY;
-	
-	player.vy += gravity;
-	
-	player.x += Math.round(player.vx);
-	player.y += Math.round(player.vy);
-	
-
-	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		jumpPoint = 0;
-		player.canJump = true;
-	}
-	while(platform0.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-	
-	
-
-		
-	if(player.hitTestObject(powerup))
-	{
-		pupform = true;
-		powerup.y = 10000;
-		
-	}
-	if(player.hitTestObject(powerup2))
-	{
-		gameOver = true;
-		powerup2.y = 10000;
-		
-			
-	}
-
-	if(gameOver)
-	{
-		context.font = '50px Impact';
-		context.fillText('GAME OVER', 310, 60, );
-		clearInterval()
-		fX = 0;
-		player.vy =-1;
-		
-	}
-
-	
-
-	if(pupform)
-		{
-			player.color = "blue";
-		}
-	
-	
-	platform0.drawRect();
-
-	//Show hit points
-	player.drawRect();
-	powerup.drawCircle();
-	powerup2.drawCircle();*/
 }
 
