@@ -6,10 +6,11 @@ var timer;
 var interval;
 var player;
 var pupform = false;
-var jumpPoint = 0;
-var jumpPoints = 0;
+var jumpPoint = 0; /*The number of actual jumps*/
+var jumpPoints = 0; /*The number of the score*/
 var gameOver = false;
 var goal
+var timeRemaining = 60
 
 
 	canvas = document.getElementById("canvas");
@@ -90,6 +91,7 @@ var goal
 			player.vy = 0
 			player.y = 600
 			changeStates("play");
+			gameTimer()
 		}
 	}
 //Start Instructions... why no click?	
@@ -227,7 +229,9 @@ var goal
 
 	context.font = '30px Impact';
 	context.fillStyle = "white";
-	context.fillText(setTimeout(1), 70, 100, );
+
+	
+	context.fillText(timeRemaining.toString(), 70, 100, );
 
 	context.font = '50px Impact';
 	context.fillStyle = "white";
@@ -256,13 +260,19 @@ var goal
 			if (jumpPoint >=2 && pupform)
 			{
 				player.vy = gravity+5;
-				jumpPoints++
+				jumpPoint = jumpPoint;
+				
 			}
 			if ( jumpPoints >= 10)
 		{
 		gameOver = true;
 			gravity = 100;
 			fX = 0;
+		}
+
+		if (w && pupform && jumpPoint == 2)
+		{
+			jumpPoints +=1;
 		}
 			
 			
@@ -529,6 +539,12 @@ function animate()
 
 	
 
+
+}
+
+function gameTimer(){
+	timeRemaining-=1
+	setTimeout(gameTimer,1000)
 
 }
 
