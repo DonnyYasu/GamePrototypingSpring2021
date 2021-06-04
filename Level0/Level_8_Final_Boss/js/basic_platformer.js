@@ -221,7 +221,7 @@ var timeRemaining = 60
 	states["play"] = function()
 {
 
-	setTimeout(changeStates, 47500, "lose")
+	setTimeout(changeStates, 60000, "lose")
 
 	context.font = '50px Impact';
 	context.fillStyle = "white";
