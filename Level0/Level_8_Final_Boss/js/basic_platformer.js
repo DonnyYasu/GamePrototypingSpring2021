@@ -55,7 +55,7 @@ var goal
 	platform1.y = 100;
 	platform1.color = "#81d8f0";
 //PowerUps		
-	powerup = new GameObject({width:24, height:50, x:canvas.width-50, y:650, color:"#00ffff"});
+	powerup = new GameObject({width:24, height:50, x:canvas.width-100, y:700, color:"#00ffff"});
 	powerup2 = new GameObject({width:24, height:50, x:canvas.width-150, y:250, color:"#00ffff"});
 	powerup3 = new GameObject({width:24, height:50, x:canvas.width-950, y:150, color:"#00ffff"});
 //Goal	
@@ -205,10 +205,10 @@ var goal
 		
 		player.x = 150
 		player.y = 700
-		powerup.x = 900
-		powerup.y = 700
+		//powerup.x = 900
+		//powerup.y = 700
 		player.drawRect();
-		powerup.drawCircle();
+		powerup.drawCircle(powerup.x = 900, powerup.y = 670);
 		startInstructions();
 
 
