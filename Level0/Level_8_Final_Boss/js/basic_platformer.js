@@ -168,7 +168,7 @@ var goal
 			context.font = "bold 30px Arial"
 			context.fillText("- Use 'W' to jump. Use 'A' and 'D' to move. ", canvas.width/2, canvas.height/2-150)
 			context.fillText("- As the player, your objective is to reach the yellow circle goal.", canvas.width/2, canvas.height/2-110)
-			context.fillText("- If reach a blue circle Power-Up, you gain the ability to double jump", canvas.width/2, canvas.height/2-70)
+			context.fillText("- If you reach a blue circle Power-Up, gain the ability to double jump.", canvas.width/2, canvas.height/2-70)
 			context.fillText("- If you reach a second Power-Up however, game over.", canvas.width/2, canvas.height/2-30)
 			context.fillText("- If you jump ten times, game over.", canvas.width/2, canvas.height/2+10)
 			context.fillText("- If the timer reaches 60 seconds, game over.", canvas.width/2, canvas.height/2+40)
@@ -189,16 +189,24 @@ var goal
 		
 		context.save();
 			context.fillStyle = "black";
-			context.font = "bold 58px Arial"
+			context.font = "bold 58px Impact"
 			context.textAlign = "center";
 			context.fillRect(0, canvas.height/2-100,canvas.width, 200);
 			context.fillStyle = "white";
 			context.fillText("JUMPER", canvas.width/2, canvas.height/2-78/4)
-			context.fillText("Made by: Devin Belasco", canvas.width/2, canvas.height/2+(64))
+			context.font = "bold 40px Impact"
+			context.fillText("Made by Devin Belasco", canvas.width/2, canvas.height/2+(64))
+			context.font = "bold 30px Arial"
+			context.textAlign = "center";
+			context.fillStyle = "white";
+			context.fillText("Click The Red Player to start.", canvas.width/2, canvas.height/2+(164));
+			context.fillText("Click the blue Power-Up for instructions to play.", canvas.width/2, canvas.height/2+(204));
 		context.restore();
 		
 		player.x = 150
 		player.y = 700
+		powerup.x = 900
+		powerup.y = 700
 		player.drawRect();
 		powerup.drawCircle();
 		startInstructions();
