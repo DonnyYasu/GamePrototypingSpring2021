@@ -214,15 +214,19 @@ var goal
 	setTimeout(changeStates, 47500, "lose")
 
 	context.font = '50px Impact';
+	context.fillStyle = "white";
 	context.fillText('Timer', 70, 60, );
 
 	context.font = '30px Impact';
+	context.fillStyle = "white";
 	context.fillText(setTimeout(1), 70, 100, );
 
 	context.font = '50px Impact';
+	context.fillStyle = "white";
 	context.fillText('Jumps', 800, 60, );
 
 	context.font = '30px Impact';
+	context.fillStyle = "white";
 	context.fillText(jumpPoints, 855, 100, );
   
 	if(w && player.canJump && player.vy ==0)
